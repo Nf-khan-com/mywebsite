@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'DM Sans', 'Noto Sans Bengali', sans-serif;
+  --font-display: 'Manrope', 'Noto Sans Bengali', sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --primary: oklch(0.52 0.16 305);
+  --primary-foreground: oklch(0.98 0.01 300);
+  --radius: 0.75rem;
+  --background: oklch(0.97 0.008 80);
+  --foreground: oklch(0.18 0.012 300);
+  --card: oklch(0.99 0.004 80);
+  --card-foreground: oklch(0.18 0.012 300);
+  --popover: oklch(0.99 0.004 80);
+  --popover-foreground: oklch(0.18 0.012 300);
+  --secondary: oklch(0.93 0.02 300);
+  --secondary-foreground: oklch(0.3 0.02 300);
+  --muted: oklch(0.92 0.012 80);
+  --muted-foreground: oklch(0.48 0.015 300);
+  --accent: oklch(0.91 0.035 300);
+  --accent-foreground: oklch(0.22 0.02 300);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --border: oklch(0.18 0.012 300 / 12%);
+  --input: oklch(0.18 0.012 300 / 15%);
+  --ring: oklch(0.52 0.16 305);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: #f6f3ee; font-family: 'DM Sans', 'Noto Sans Bengali', sans-serif; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; }
+  button:not(:disabled), a[href], select:not(:disabled), input:not(:disabled), textarea:not(:disabled) { @apply cursor-pointer; }
+}
+
+@layer components {
+  .container { width: 100%; margin-inline: auto; padding-inline: 1.25rem; }
+  .section-kicker { font-size: 11px; font-weight: 800; letter-spacing: 0.18em; line-height: 1.2; text-transform: uppercase; color: #8a8490; }
+  .section-title { font-family: 'Manrope', 'Noto Sans Bengali', sans-serif; font-size: clamp(2.5rem, 5.5vw, 4.75rem); font-weight: 800; line-height: 0.98; letter-spacing: -0.065em; }
+  .font-display { font-family: 'Manrope', 'Noto Sans Bengali', sans-serif; }
+}
+
+@media (min-width: 640px) { .container { padding-inline: 1.5rem; } }
+@media (min-width: 1024px) { .container { max-width: 1280px; padding-inline: 2.25rem; } }
+
+.hero-orbit { animation: orbit 16s linear infinite; }
+.hero-orbit-reverse { animation: orbitReverse 22s linear infinite; }
+.hero-blob { animation: floatBlob 7s ease-in-out infinite; }
+.hero-card { animation: floatCard 6s ease-in-out infinite; }
+
+@keyframes orbit { from { transform: rotate(0deg) translateX(9px) rotate(0deg); } to { transform: rotate(360deg) translateX(9px) rotate(-360deg); } }
+@keyframes orbitReverse { from { transform: rotate(360deg) translateX(6px) rotate(-360deg); } to { transform: rotate(0deg) translateX(6px) rotate(0deg); } }
+@keyframes floatBlob { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-8deg); } 50% { transform: translate3d(-10px, 12px, 0) rotate(5deg); } }
+@keyframes floatCard { 0%, 100% { transform: translate3d(0, 0, 0) rotate(1deg); } 50% { transform: translate3d(0, -9px, 0) rotate(-1deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
